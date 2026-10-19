@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Love You</title>
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ffd6e7, #ffb3c6, #ff8fab);
+    font-family: "Comic Sans MS", "Brush Script MT", cursive;
+    color: #7a0030;
+    text-align: center;
+    overflow: hidden;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 10vw, 6rem);
+    margin: 0 0 0.3em;
+    text-shadow: 3px 3px 0 #fff;
+  }
+  button {
+    font-family: inherit;
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 999px;
+    background: #ff3b6b;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #b0002e;
+  }
+  button:active { transform: translateY(4px); box-shadow: 0 2px 0 #b0002e; }
+  #count { font-size: 1.4rem; margin-top: 1em; }
+  .heart {
+    position: fixed;
+    bottom: -10vh;
+    font-size: 2rem;
+    animation: rise 4s linear forwards;
+    pointer-events: none;
+  }
+  @keyframes rise {
+    to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <h1>I Love You ❤️</h1>
+  <button id="btn">Tap me</button>
+  <p id="count">Times told today: 0</p>
+
+<script>
+  const btn = document.getElementById("btn");
+  const count = document.getElementById("count");
+  let n = 0;
+
+  btn.addEventListener("click", () => {
+    n++;
+    count.textContent = `Times told today: ${n} (and counting)`;
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = ["❤️", "💖", "💕", "😘", "🥰"][Math.floor(Math.random() * 5)];
+    h.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  });
+</script>
+</body>
+</html>
